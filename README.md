@@ -2,7 +2,7 @@
 
 **Official GitHub Repository:** [ISTA Foundation](https://istafoundation.in)
 
-We are happy to announce that we are building out [ISTA Foundation](https://istafoundation.in) and all its associated projects leveraging industry-leading technology: [Next.js](https://nextjs.org).
+We are happy to announce that we are building [ISTA Foundation](https://istafoundation.in) and all its associated projects leveraging industry-leading technology: [Next.js](https://nextjs.org).
 
 > **NOTE:** This project is not yet deployed on the main domain of [ISTA Foundation](https://istafoundation.in).
 
