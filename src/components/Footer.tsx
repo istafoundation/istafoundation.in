@@ -1,9 +1,11 @@
-// components/Footer.tsx
 'use client';
 
 import Link from 'next/link';
-import { FaArrowUp } from "react-icons/fa";
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { FaArrowUp, FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import Modal from './Modal';
+import TermsContent from './TermsContent';
+import PrivacyContent from './PrivacyContent';
 
 const linksNav = [
     { title: 'Home', href: '/' },
@@ -28,28 +30,24 @@ export default function Footer() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, []);
 
+    const [modal, setModal] = useState<null | 'terms' | 'privacy'>(null);
+
     return (
-        // For sticky-at-bottom pages, ensure the page layout uses: min-h-screen flex flex-col
-        // and place this footer inside the layout with mt-auto on the previous content wrapper.
         <footer className="relative text-zinc-700">
-            {/* Background: softer gradients + corner doodles + vignette */}
+            {/* Background */}
             <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
                 <div className="absolute inset-0 bg-[radial-gradient(36rem_26rem_at_12%_0%,rgba(124,58,237,0.07),transparent_60%),radial-gradient(28rem_24rem_at_90%_8%,rgba(244,114,182,0.10),transparent_60%),linear-gradient(180deg,rgba(250,250,250,0.96),rgba(250,250,250,1))]" />
                 <div className="absolute inset-0 bg-[radial-gradient(120vh_40vh_at_50%_120%,rgba(0,0,0,0.06),transparent_60%)]" />
-                <svg className="absolute left-3 top-6 h-14 w-14 opacity-30" viewBox="0 0 64 64" fill="none">
-                    <path d="M12 20c8-8 26-10 30-2s-6 20-12 24-14 2-18-4 0-10 0-18z" stroke="#8b5cf6" strokeWidth="2" />
-                </svg>
-                <svg className="absolute right-6 top-5 h-20 w-20 opacity-20" viewBox="0 0 64 64" fill="none">
-                    <path d="M14 32c6-12 22-16 34-12m-4 22c-6 12-20 14-30 8" stroke="#7c3aed" strokeWidth="2" />
-                </svg>
             </div>
 
             {/* Elevated card wrapper */}
             <div className="mx-auto mt-12 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="overflow-hidden rounded-3xl border border-zinc-200/70 bg-white/85 shadow-[0_12px_40px_rgba(0,0,0,0.06)] backdrop-blur">
-                    {/* Top: 4 columns with smart breakpoints */}
+
+                    {/* Top: Columns */}
                     <div className="px-6 py-10 sm:px-8 sm:py-12 lg:px-12">
                         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+
                             {/* 1. Brand + Legal */}
                             <div>
                                 <Link href="/" className="inline-flex items-center gap-3">
@@ -67,20 +65,22 @@ export default function Footer() {
 
                                 <ul className="mt-5 space-y-2 text-sm">
                                     <li>
-                                        <Link
-                                            href="/terms"
+                                        <button
+                                            type="button"
+                                            onClick={() => setModal('terms')}
                                             className="hover:text-zinc-900 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
                                         >
                                             Terms & Conditions
-                                        </Link>
+                                        </button>
                                     </li>
                                     <li>
-                                        <Link
-                                            href="/privacy"
+                                        <button
+                                            type="button"
+                                            onClick={() => setModal('privacy')}
                                             className="hover:text-zinc-900 underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
                                         >
                                             Privacy Policy
-                                        </Link>
+                                        </button>
                                     </li>
                                 </ul>
 
@@ -118,10 +118,17 @@ export default function Footer() {
                                         <li key={r.title}>
                                             <Link
                                                 href={r.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
                                                 className="group inline-flex w-full items-center justify-between rounded px-1 py-1.5 hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
                                             >
                                                 <span>{r.title}</span>
-                                                <span aria-hidden className="translate-y-0 text-zinc-400 transition-transform group-hover:-translate-y-0.5">↗</span>
+                                                <span
+                                                    aria-hidden
+                                                    className="translate-y-0 text-zinc-400 transition-transform group-hover:-translate-y-0.5"
+                                                >
+                                                    ↗
+                                                </span>
                                             </Link>
                                         </li>
                                     ))}
@@ -175,37 +182,43 @@ export default function Footer() {
                                     <a
                                         aria-label="Facebook"
                                         href="https://facebook.com"
-                                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 transition hover:bg-zinc-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 hover:text-emerald-600 transition hover:bg-zinc-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
                                     >
-                                        f
+                                        <FaFacebookF size={16} />
                                     </a>
                                 </li>
                                 <li>
                                     <a
                                         aria-label="Instagram"
                                         href="https://instagram.com"
-                                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 transition hover:bg-zinc-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 hover:text-emerald-600 transition hover:bg-zinc-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
                                     >
-                                        ig
+                                        <FaInstagram size={16} />
                                     </a>
                                 </li>
                                 <li>
                                     <a
                                         aria-label="YouTube"
                                         href="https://youtube.com"
-                                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 transition hover:bg-zinc-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 hover:text-emerald-600 transition hover:bg-zinc-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
                                     >
-                                        ▶
+                                        <FaYoutube size={16} />
                                     </a>
                                 </li>
                             </ul>
 
-                            {/* Copyright center */}
+                            {/* Copyright */}
                             <p className="order-1 text-center text-zinc-600 sm:order-2">
                                 © {new Date().getFullYear()} ISTA Foundation
                             </p>
 
-                            {/* Back to top right */}
+                            {/* Back to top */}
                             <button
                                 type="button"
                                 onClick={onBackToTop}
@@ -218,6 +231,23 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
+
+            {/* Modals */}
+            <Modal
+                isOpen={modal === 'terms'}
+                onClose={() => setModal(null)}
+                title="Terms & Conditions"
+            >
+                <TermsContent />
+            </Modal>
+
+            <Modal
+                isOpen={modal === 'privacy'}
+                onClose={() => setModal(null)}
+                title="Privacy Policy"
+            >
+                <PrivacyContent />
+            </Modal>
         </footer>
     );
 }
