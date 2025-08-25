@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   return (
@@ -15,15 +16,15 @@ export default function Navbar() {
                 </div>
             </div>
             <div className="right-content-top space-x-6">
-                <a>Let's Talk</a>
+                <a>Let&apos;s Talk</a>
                 <a href="#">+91 00000 00000</a>
             </div>
         </div>
         
         <nav className="flex items-center px-10 py-4 space-x-4 bg-gray-100 sticky justify-between">
-            <img src="logo.png" alt="ISTA Foundation Logo" className="w-56 h-auto" />
+            <Image src="logo.png" alt="ISTA Foundation Logo" className="w-56 h-auto" />
             <ul className="flex flex-row items-center space-x-10 mx-auto font-sans font-medium">
-                <li className=''>Home</li>
+                <li>Home</li>
                 <li>About Us</li>
                 <li>Programmes</li>
                 <li>Gallery</li>
