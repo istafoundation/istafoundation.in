@@ -55,7 +55,7 @@ export default function Navbar() {
                                     <span className="select-all">istafoundation.in@gmail.com</span>
                                 </Link>
                                 <Link
-                                    href="#"
+                                    href="#" target="_blank"
                                     className="inline-flex items-center gap-2 hover:text-emerald-700 transition-colors"
                                 >
                                     <i className="fa-solid fa-location-dot" aria-hidden="true"></i>
@@ -111,7 +111,7 @@ export default function Navbar() {
                             {/* CTA desktop */}
                             <div className="hidden md:block">
                                 <Link
-                                    href="#"
+                                    href="/become-a-volunteer"
                                     className="inline-flex items-center justify-center rounded-full bg-amber-300 px-6 py-2.5 text-base font-semibold text-gray-900 shadow-sm transition-all hover:bg-amber-400 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
                                 >
                                     Become a Volunteer
@@ -180,7 +180,7 @@ export default function Navbar() {
                                 </ul>
                                 <div className="pt-3">
                                     <Link
-                                        href="#"
+                                        href="/become-a-volunteer"
                                         onClick={() => setOpen(false)}
                                         className="inline-flex w-full items-center justify-center rounded-full bg-amber-300 px-5 py-2.5 text-base font-semibold text-gray-900 shadow-sm transition-all hover:bg-amber-400 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
                                     >
